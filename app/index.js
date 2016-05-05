@@ -140,17 +140,16 @@ module.exports = yo.generators.Base.extend({
 
         console.log(chalk.green('> Downloading files'));
         var downloadCount = this.install.DOWNLOAD_FILES.length;
-        var downloadProgress = [];
+        var downloadProgress = new pleasant();
+        downloadProgress.start('Working');
         for (var i = 0; i < downloadCount; i++) {
             var done = this.async();
             var download = this.install.DOWNLOAD_FILES[i];
             console.log('+ ' + chalk.green(download.name) + ' downloading');
-            downloadProgress[i] = new pleasant();
-            downloadProgress[i].start('Working');
             this.download(download.url, function() {
-                downloadProgress[(downloadCount - 1)].stop();
                 downloadCount--;
                 if (downloadCount === 0) {
+                  downloadProgress.stop();
                   done();
                 }
                 });

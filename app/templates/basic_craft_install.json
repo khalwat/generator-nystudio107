@@ -51,6 +51,7 @@
     ],
     "MYSQL_DBS": [
     ],
+    "CRAFT_PLUGINS_DIRECTORY": "craft/plugins",
     "CRAFT_PLUGINS": [
     ],
     "REMOTE_GIT_ORIGIN": "",

@@ -71,26 +71,27 @@
     ],
     "MYSQL_DBS": [
     ],
+    "CRAFT_PLUGINS_DIRECTORY": "craft/plugins",
     "CRAFT_PLUGINS": [
         {
             "name": "Minify",
             "url": "https://github.com/khalwat/minify.git",
-            "path": "craft/plugins/minify"
+            "dir": "minify"
         },
         {
             "name": "Cookies",
             "url": "https://github.com/khalwat/cookies.git",
-            "path": "craft/plugins/cookies"
+            "dir": "cookies"
         },
         {
             "name": "Retour",
             "url": "https://github.com/nystudio107/retour.git",
-            "path": "craft/plugins/retour"
+            "dir": "retour"
         },
         {
             "name": "SEOmatic",
             "url": "https://github.com/nystudio107/seomatic.git",
-            "path": "craft/plugins/seomatic"
+            "dir": "seomatic"
         }
     ],
     "REMOTE_GIT_ORIGIN": "",

@@ -1,4 +1,4 @@
-# generator-craftinstall 
+# generator-craftinstall
 
 generator-craftinstall is a [Yeoman](http://yeoman.io) generator for [Craft CMS](http://www.buildwithcraft.com) installs
 
@@ -144,7 +144,7 @@ A MySQL database dump that we pipe into your new Craft CMS install's database.  
             "src": "craft/db/dump.sql"
         }
     ],
- 
+
 
 * `user:` the user name to use to connect to MySQL
 * `password:` the password to use to connect to MySQL
@@ -157,11 +157,14 @@ By default, generator-craftinstall does not dump a database.
 
 ### CRAFT_PLUGINS
 
+There is a config setting for the plugins directory path. This is `CRAFT_PLUGINS_DIRECTORY` and is set to `craft/plugins` by default.
+
 Craft CMS plugins downloaded from git repositories on github.com
 
 * `name:` The human-readable name of the plugin
 * `url:` the git clone URL for the plugin
-* `path:` the destination path, relative to the project directory
+* `dir:` the plugin directory name
+* `subDirectory:` a boolean value. If `true` this means the plugin is in a sub directory in the vendors repository [e.g. Pixel & Tonic's Contact Form](https://github.com/pixelandtonic/ContactForm)
 
 By default, generator-craftinstall just clones my `Minify`, `Cookies`, and `Path Tools` plugins, but you can change these, or add any plugins you want cloned here.
 
@@ -196,8 +199,8 @@ Here's an example of the output from a `yo craftinstall` generator:
 vagrant@homestead:~/sites/testapp101$ yo craftinstall
 [ Initializing ]
 ? Select which install to use: (Use arrow keys)
-❯ Advanced Craft Install 
-  Basic Craft Install 
+❯ Advanced Craft Install
+  Basic Craft Install
 [ Prompting ]
 ? Application name testapp
 [ Configuring ]
@@ -279,7 +282,7 @@ To git@tastystakes.com:testapp.git
 > End install commands
 + animate.css npm install executed
 > All set.  Have a nice day.
-vagrant@homestead:~/sites/testapp101$ 
+vagrant@homestead:~/sites/testapp101$
 ```
 
 ## Debugging

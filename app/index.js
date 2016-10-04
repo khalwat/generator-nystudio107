@@ -283,7 +283,16 @@ module.exports = yo.generators.Base.extend({
         for (var i = 0; i < this.install.CRAFT_PLUGINS.length; i++) {
             var plugin = this.install.CRAFT_PLUGINS[i];
             console.log('+ ' + chalk.green(plugin.name) + ' plugin installed');
-            child_process.execSync('git clone ' + plugin.url + ' ' + plugin.path);
+            var pluginPath = this.install.CRAFT_PLUGINS_DIRECTORY + '/' + plugin.dir;
+            child_process.execSync('git clone ' + plugin.url + ' ' + pluginPath);
+            if (plugin.subDirectory) {
+              console.log('+ ' + chalk.green(plugin.name) + ' moving sub directory');
+              var tmpPluginDir = this.install.CRAFT_PLUGINS_DIRECTORY + '/tmp-' + plugin.dir;
+              child_process.execSync('mv ' + pluginPath + '/' + plugin.dir
+                  + ' ' + tmpPluginDir
+                  + ' && rm -rf ' + pluginPath
+                  + ' && mv ' + tmpPluginDir + ' ' + pluginPath);
+            }
         }
 
         console.log(chalk.green('> Sync to file system'));

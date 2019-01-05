@@ -94,6 +94,8 @@
         }
     ],
     "REMOTE_GIT_ORIGIN": "",
+    "BITBUCKET_ACCOUNT": [
+    ],
     "BOWER_OPTIONS": [
     ],
     "NPM_OPTIONS": [

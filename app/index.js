@@ -333,6 +333,33 @@ module.exports = yo.generators.Base.extend({
             console.log(chalk.green('> Pushing git repository to origin master'));
             child_process.execSync('git push origin master');
         }
+        
+/* -- Create a repository on BitBucket */
+        
+        for (var i = 0; i < this.install.BITBUCKET_ACCOUNT.length; i++) {
+            var bitbucket = this.install.BITBUCKET_ACCOUNT[i];
+            
+            console.log(chalk.green('> Creating BitBucket repo'));
+            child_process.execSync('curl -X POST -v -u ' + bitbucket.user + ':' + bitbucket.password + ' -H "Content-Type: application/json" https://api.bitbucket.org/2.0/repositories/' + bitbucket.repoOwner + '/' + this.answers.appName.toLowerCase() + ' -d \'{"scm": "git", "is_private": "' + bitbucket.isPrivate + '", "fork_policy": "' + bitbucket.forkPolicy + '" }\'');
+            
+  /* -- Initialize the local git directory, add all of the files, commit them, and push them to origin master */
+            
+            console.log(chalk.green('> Making first commit'));
+            child_process.execSync('git init');
+            child_process.execSync('git remote add origin https://' + bitbucket.user + '@bitbucket.org/' + bitbucket.repoOwner + '/' + this.answers.appName.toLowerCase() + '.git');
+            for (var i = 0; i < this.install.CRAFT_PLUGINS.length; i++) {
+                var plugin = this.install.CRAFT_PLUGINS[i];
+                console.log('+ ' + chalk.green(plugin.name) + ' added as submodule');
+                child_process.execSync('git submodule add -f ' + plugin.url + ' ' + plugin.path);
+            }
+            console.log(chalk.green('> Adding project files to git repository'));
+            child_process.execSync('git add -A');
+            child_process.execSync('git add -f craft/storage/.gitignore');
+            console.log(chalk.green('> Doing initial commit to git repository'));
+            child_process.execSync('git commit -m "initial commit"');
+            console.log(chalk.green('> Pushing git repository to origin master'));
+            child_process.execSync('git push origin master');
+        }
 
 /* -- Install Bower modules */
 

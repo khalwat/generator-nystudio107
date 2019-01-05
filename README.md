@@ -185,6 +185,24 @@ Because your `CRAFT_PLUGINS` are added as submodules, when you want to `git clon
 
 If you want to update the submodules in your repo, do `git submodule foreach git pull origin master` and it'll update all of your submodules for you.
 
+### BITBUCKET_ACCOUNT
+
+To use Bitbucket to store your site in a git repo, add your Bitbucket information to `BITBUCKET_ACCTOUNT`. This will create the repo on Bitbucket—using your `appName`—and make the first commit.
+
+By default, this creates a private repo, but you can change this in the settings. Here's an example:
+
+```
+    "BITBUCKET_ACCOUNT": [
+        {
+            "user": "username",
+            "password": "password",
+            "repoOwner": "repoowner",
+            "isPrivate": "true",
+            "forkPolicy": "no_public_forks"
+        }
+    ],
+```
+
 ### END_INSTALL_COMMANDS
 
 A list of arbitrary shell commands to execute in sequence at the [ End ] phase of the generator
